@@ -15695,6 +15695,8 @@ Test score: 0.6684938584740098
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Feature-Importance">Feature Importance<a class="anchor-link" href="#Feature-Importance">&#182;</a></h2><p>Below we use a cool library that allows use to output the weights of the features from our gridsearch object. We can use this to see which features are important in our model.</p>
+<p>The code below outputs the top 10 features, the top 5. The top 5 features potentially show us those features that are most likely to increase the chance of readmission, while the  Discharge Disposition 22 is the most signficant feature</p>
+<p>The code below outputs the top 5 features that are most likely to increase the chance of readmission, along with the bottom 5 features that are most likely to decrease it. Dischange disposition 22 (Discharged/transferred to another rehab fac including rehab units of a hospital) is the most signficant feature to contribute to readmission. This corresponds to ischarged/transferred to another rehab fac including rehab units of a hospital. On the other hand, having Insulin of No along with being Discharged to Home (1) with some medications (pioglitzone and metformin) perhaps reduces the chance of readmission.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -15709,7 +15711,7 @@ Test score: 0.6684938584740098
 <span class="n">numeric_features_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">numeric_features</span><span class="p">)</span>
 <span class="n">numeric_features_list</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">onehot_columns</span><span class="p">)</span>
 
-<span class="n">eli5</span><span class="o">.</span><span class="n">explain_weights</span><span class="p">(</span><span class="n">grid_search</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s1">&#39;classifier&#39;</span><span class="p">],</span> <span class="n">top</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="n">numeric_features_list</span><span class="p">)</span>
+<span class="n">eli5</span><span class="o">.</span><span class="n">explain_weights</span><span class="p">(</span><span class="n">grid_search</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s1">&#39;classifier&#39;</span><span class="p">],</span> <span class="n">top</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="n">numeric_features_list</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15843,421 +15845,21 @@ top features
     
 </tr>
         
-            <tr style="background-color: hsl(120, 100.00%, 94.08%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        +0.183
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        Diag2_Neoplasms
-    </td>
-    
-</tr>
         
-            <tr style="background-color: hsl(120, 100.00%, 94.30%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        +0.173
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        admission_source_id_1
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(120, 100.00%, 94.36%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        +0.171
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        admission_source_id_7
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(120, 100.00%, 94.62%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        +0.160
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        Diag1_Circulatory
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(120, 100.00%, 94.91%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        +0.148
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        Diag2_Circulatory
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(120, 100.00%, 95.00%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        +0.144
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        number_diagnoses
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(120, 100.00%, 95.15%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        +0.138
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        race_AfricanAmerican
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(120, 100.00%, 96.03%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        +0.104
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        Diag2_Diabetes
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(120, 100.00%, 96.11%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        +0.100
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        admission_type_id_1
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(120, 100.00%, 96.67%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        +0.080
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        insulin_Down
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(120, 100.00%, 97.19%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        +0.063
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        num_lab_procedures
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(120, 100.00%, 97.35%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        +0.058
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        discharge_disposition_id_3
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(120, 100.00%, 97.91%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        +0.042
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        num_medications
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(120, 100.00%, 98.17%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        +0.034
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        Diag3_Circulatory
-    </td>
-    
-</tr>
-        
-        
-            <tr style="background-color: hsl(120, 100.00%, 98.17%); border: none;">
+            <tr style="background-color: hsl(120, 100.00%, 92.10%); border: none;">
                 <td colspan="2" style="padding: 0 0.5em 0 0.5em; text-align: center; border: none; white-space: nowrap;">
-                    <i>&hellip; 6 more positive &hellip;</i>
+                    <i>&hellip; 20 more positive &hellip;</i>
                 </td>
             </tr>
         
 
         
-            <tr style="background-color: hsl(0, 100.00%, 98.24%); border: none;">
+            <tr style="background-color: hsl(0, 100.00%, 92.91%); border: none;">
                 <td colspan="2" style="padding: 0 0.5em 0 0.5em; text-align: center; border: none; white-space: nowrap;">
-                    <i>&hellip; 8 more negative &hellip;</i>
+                    <i>&hellip; 34 more negative &hellip;</i>
                 </td>
             </tr>
         
-        
-            <tr style="background-color: hsl(0, 100.00%, 98.24%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        -0.032
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        gender_Female
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(0, 100.00%, 97.95%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        -0.040
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        Diag2_Respiratory
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(0, 100.00%, 97.94%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        -0.040
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        Diag2_Other
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(0, 100.00%, 97.84%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        -0.043
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        number_outpatient
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(0, 100.00%, 97.67%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        -0.048
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        admission_type_id_6
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(0, 100.00%, 97.63%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        -0.049
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        metformin-rosiglitazone_No
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(0, 100.00%, 97.61%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        -0.050
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        Diag1_Musculoskeletal
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(0, 100.00%, 97.25%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        -0.061
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        A1Cresult_Norm
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(0, 100.00%, 96.70%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        -0.079
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        num_procedures
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(0, 100.00%, 96.40%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        -0.090
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        max_glu_serum_None
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(0, 100.00%, 96.37%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        -0.091
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        diabetesMed_No
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(0, 100.00%, 96.23%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        -0.096
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        metformin_Steady
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(0, 100.00%, 96.22%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        -0.097
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        Diag3_Other
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(0, 100.00%, 96.06%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        -0.102
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        Diag3_Musculoskeletal
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(0, 100.00%, 95.83%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        -0.111
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        change_Ch
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(0, 100.00%, 95.50%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        -0.124
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        discharge_disposition_id_23
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(0, 100.00%, 95.48%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        -0.124
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        Diag1_Respiratory
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(0, 100.00%, 95.19%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        -0.136
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        insulin_Steady
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(0, 100.00%, 95.14%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        -0.138
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        acetohexamide_No
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(0, 100.00%, 94.70%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        -0.156
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        discharge_disposition_id_6
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(0, 100.00%, 94.53%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        -0.164
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        rosiglitazone_Steady
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(0, 100.00%, 94.26%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        -0.175
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        age_Young
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(0, 100.00%, 94.04%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        -0.185
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        glimepiride-pioglitazone_No
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(0, 100.00%, 94.00%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        -0.186
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        metformin_Up
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(0, 100.00%, 93.01%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        -0.232
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        age_Midage
-    </td>
-    
-</tr>
-        
-            <tr style="background-color: hsl(0, 100.00%, 92.92%); border: none;">
-    <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-        -0.237
-    </td>
-    <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-        glimepiride_Steady
-    </td>
-    
-</tr>
         
             <tr style="background-color: hsl(0, 100.00%, 92.91%); border: none;">
     <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
@@ -17003,23 +16605,8 @@ Confusion Matrix = [[ 1543 16063]
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><strong>Best performance model</strong>: L1 with AUC score of 0.644</p>
-<p>We used the Grid Search method to tune the Logistic Regression model, let the Lasso select the most important variables, and use the Ridge regularization method to prevent model overfitting.
-To evaluate the model performance we used a (Receiver Operating Characteristic curve) ROC AUC where the area is under the ROC curve.The higher the AUC, the better the performance of the model at distinguishing between the classes. In general, a value between 0.5–0.7 is acceptable and anything above 0.7 is good-to-go-model.</p>
-<ul>
-<li><strong>LR Model Advantages</strong>: There is less transformation needed to make the model run in a reasonable time window. Scaler transformation may help increase the LR model performance but is not required for performance as the model performs well at scale regardless of whether the data is normalized.</li>
-<li><strong>LR Model Disadvantages</strong>: It’s difficult to interpret the LR model as the weights are multiplicative and not additive</li>
-</ul>
-<p><strong>Top 4 Positive Important Features</strong>:</p>
-<ul>
-<li><strong>Discharge_disposition_id_22</strong>: 1.039</li>
-<li><strong>A1Cresult_None</strong>: 0.343</li>
-<li><strong>discharge_disposition_id_5</strong>: 0.285</li>
-<li><p><strong>number_inpatient</strong>: .0277</p>
-<p>The above important features are found by running eli5, which can be used to explain the feature importance.</p>
-</li>
-</ul>
-<p><strong>Future work</strong>: Using the Grid Search method to tune the model, the best performance model is L1 with an AUC score of 0.644. But in the real world, we need the AUC of 0.95 or more is considered to be good-to-go-model. To reach the AUC of 0.95, we probably should choose other models instead, like the ensembles model or Random Forest Model to find the better performance model.</p>
+<p><strong>Summary</strong>:
+Since our model is constrained to logistic regression, we recommend using the L1 model to reduce the complexity of the model since it performs almost identically to the L2 model (Ridge). Features such as discharge disposition, current diagnosis, and previous inpatient stays are important indicators of readmission. However, if we want to improve upon the accuracy of the model, we should consider using more advanced techniques such as neural networks to capture the non-linear relationships between the features.</p>
 
 </div>
 </div>

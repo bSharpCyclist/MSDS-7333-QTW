@@ -14013,8 +14013,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Data-Evaluation-/-Engineering">Data Evaluation / Engineering<a class="anchor-link" href="#Data-Evaluation-/-Engineering">&#182;</a></h1><p><em>Summarize the data being used in the case using appropriate mediums (charts, graphs, tables); address questions such as: Are there missing values? Which variables are needed (which ones are not)? What assumptions or conclusions are you drawing that need to be relayed to your audience?</em></p>
-<h2 id="Read-Data">Read Data<a class="anchor-link" href="#Read-Data">&#182;</a></h2>
+<h1 id="Data-Evaluation-/-Engineering">Data Evaluation / Engineering<a class="anchor-link" href="#Data-Evaluation-/-Engineering">&#182;</a></h1><h2 id="Read-Data">Read Data<a class="anchor-link" href="#Read-Data">&#182;</a></h2>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
@@ -14720,7 +14719,7 @@ memory usage: 1.5 GB
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Modeling-Preparations">Modeling Preparations<a class="anchor-link" href="#Modeling-Preparations">&#182;</a></h1><p><em>Which methods are you proposing to utilize to solve the problem?  Why is this method appropriate given the business objective? How will you determine if your approach is useful (or how will you differentiate which approach is more useful than another)?  More specifically, what evaluation metrics are most useful given that the problem is a classification one (ex., Accuracy, F1-score, Precision, Recall, AUC, etc.)?</em></p>
+<h1 id="Modeling-Preparations">Modeling Preparations<a class="anchor-link" href="#Modeling-Preparations">&#182;</a></h1><p>The business objective asked of us is to use a neural network and optimize for accuracy. However, before doing that we will sample a small set of data and build a simple logistic regression model to see what the accuracy of the model is. Establish a baseline.</p>
 <h2 id="Create-training-and-test-sets">Create training and test sets<a class="anchor-link" href="#Create-training-and-test-sets">&#182;</a></h2>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14963,14 +14962,8 @@ Feature: 27, Score: -0.97617
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Model-Building-&amp;-Evaluation">Model Building &amp; Evaluation<a class="anchor-link" href="#Model-Building-&amp;-Evaluation">&#182;</a></h1><p>In this case, your primary task is to construct a neural network to detect the existence of new particles and will involve the following steps:</p>
-<ul>
-<li>Construct your neural network's architecture</li>
-<li>Fit your neural network to your training data</li>
-<li>Analyze your model's performance - referencing your chosen evaluation metric (including supplemental visuals and analysis where appropriate)</li>
-</ul>
-<p>Below we create a grid style apporach in finding the best parameters for the neural network. We'll attempt to determine an optimal number of hidden layers and the number of nodes in each layer. Note, we'll use a dropout layer for every hidden layer used. The final layer at the end will use a sigmoid activation function, since we are dealing with a binary classification problem.</p>
-<p>Additionally, we'll use the Adam optimizer in SGD and BinaryCrossEntropy for the loss function. Early stopping is used to prevent overfitting, and will stop training once there is no longer improvement in the validation set. This is defined with the patience parameter (set at 3), along with an min_delta parameter (set at 0.0002). Early stoppoing will occur if we don't see any improvement greater than .0002 in 3 tries.</p>
+<h1 id="Model-Building-&amp;-Evaluation">Model Building &amp; Evaluation<a class="anchor-link" href="#Model-Building-&amp;-Evaluation">&#182;</a></h1><p>Below we create a grid style apporach in finding the best parameters for the neural network. We'll attempt to determine an optimal number of hidden layers and the number of nodes in each layer. Note, we'll use a dropout layer for every hidden layer used. The final layer at the end will use a sigmoid activation function, since we are dealing with a binary classification problem.</p>
+<p>Additionally, we'll use the Adam optimizer in SGD and BinaryCrossEntropy for the loss function. Early stopping is used to prevent overfitting, and will stop training once there is no longer improvement in the validation set. This is defined with the patience parameter (set at 3), along with an min_delta parameter (set at 0.0002). Early stopping will occur if we don't see any improvement greater than .0002 in 3 tries.</p>
 <h2 id="Use-full-data-set">Use full data set<a class="anchor-link" href="#Use-full-data-set">&#182;</a></h2>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -15724,7 +15717,7 @@ _________________________________________________________________
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>2310/2310 [==============================] - 3s 1ms/step - loss: 0.2608 - accuracy: 0.8830
+<pre>2310/2310 [==============================] - 4s 1ms/step - loss: 0.2608 - accuracy: 0.8830
 </pre>
 </div>
 </div>
@@ -15750,7 +15743,8 @@ _________________________________________________________________
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>We can see above that the grid search found an optimal configuration of 2 hidden layers and 453 nodes in each layer, achieving an accuracy of 88.3%. Let's produce a final mode and then perform some predictions on our validation set. We split our data into 3 parts below, train (60%), test (20%) and validation (20%). We'll make predictions on the validation set and then evaluate the performance of our model.</p>
+<h2 id="Model-Summary">Model Summary<a class="anchor-link" href="#Model-Summary">&#182;</a></h2><p>We can see above that the grid search found an optimal configuration of 2 hidden layers and 453 nodes in each layer, achieving an accuracy of 88.3%.</p>
+<p>Let's produce a final model and then perform some predictions on our validation set. We split our data into 3 parts below, train (60%), test (20%) and validation (20%). The nuerul network is configured to have 2 layers, 128 nodes, 2 drop out layers, and a sigmoid activation function at teh output layer. We'll again use the Adam optimizer and BinaryCrossEntropy for the loss function. The same early stopping parameters defined above are used.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -15977,7 +15971,7 @@ New Particle (Yes)       0.86      0.91      0.88    699452
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Tensorsboard">Tensorsboard<a class="anchor-link" href="#Tensorsboard">&#182;</a></h2><p>Tensboard can be used to show the how the model is training. Below we output the accuracy and loss curves for our training and validation sets.</p>
+<h2 id="Tensorsboard">Tensorsboard<a class="anchor-link" href="#Tensorsboard">&#182;</a></h2><p>Tensboard can be used to show the how the model is training. Below we output the accuracy and loss curves for our training and validation sets. Notice that the curves stop once our early stopping criteria is met.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -16023,7 +16017,7 @@ New Particle (Yes)       0.86      0.91      0.88    699452
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Selecting TensorBoard with logdir logs (started 20:16:33 ago; port 6006, pid 44604).
+<pre>Selecting TensorBoard with logdir logs (started 1 day, 4:10:55 ago; port 6006, pid 44604).
 </pre>
 </div>
 </div>
@@ -16037,11 +16031,11 @@ New Particle (Yes)       0.86      0.91      0.88    699452
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
 
-      <iframe id="tensorboard-frame-724144040d4877d9" width="100%" height="800" frameborder="0">
+      <iframe id="tensorboard-frame-c25b0b0e6a9f6ace" width="100%" height="800" frameborder="0">
       </iframe>
       <script>
         (function() {
-          const frame = document.getElementById("tensorboard-frame-724144040d4877d9");
+          const frame = document.getElementById("tensorboard-frame-c25b0b0e6a9f6ace");
           const url = new URL("http://localhost");
           const port = 6006;
           if (port) {
@@ -16063,6 +16057,11 @@ New Particle (Yes)       0.86      0.91      0.88    699452
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h1><p>We examined using a neural network to predict the existence of new particles. We found that the neural network performed well on the validation set, and that the model was able to accurately predict the existence of new particles with 88% accuracy. However, it was also shown that Logistic Regression could perform almost as well, with an accuracy of 83.6%. Depending on resources and other constraints, using s model that can be trained faster might be more appropriate.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 
 </div>
 </div>
